@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     serialp=new QSerialPort;
     scene = new QGraphicsScene;
-
+    mytime=new QTime;
     scene->setSceneRect(0, 0, 600, 400);
 //        scene->addLine(0, 0, 30, 30);
 //        scene->addLine(40, 40, 70, 70);

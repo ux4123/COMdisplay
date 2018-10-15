@@ -6,6 +6,7 @@
 #include "QtSerialPort/QSerialPortInfo"
 #include "QGraphicsScene"
 #include <QDebug>
+#include <QTime>
 namespace Ui {
 class MainWindow;
 }
@@ -30,6 +31,7 @@ private slots:
     void ReadData();
 private:
     QGraphicsScene *scene;
+    QTime *mytime;
 
 private:
     Ui::MainWindow *ui;
