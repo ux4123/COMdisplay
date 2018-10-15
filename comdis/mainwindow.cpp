@@ -12,7 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     serialp=new QSerialPort;
     scene = new QGraphicsScene;
-    mytime=new QTime;
+    mytime=new QTimer();
+
+    QObject::connect(serialp,&QSerialPort::readyRead,this,&MainWindow::ReadData);
+    QObject::connect(mytime,&QTimer::timeout,this,&MainWindow::timeon);
     scene->setSceneRect(0, 0, 600, 400);
 //        scene->addLine(0, 0, 30, 30);
 //        scene->addLine(40, 40, 70, 70);
@@ -79,7 +82,7 @@ void MainWindow::on_pushButton_2_clicked()
         //label edit
         ui->label_5->setText(tr("ON"));
 
-        QObject::connect(serialp,&QSerialPort::readyRead,this,&MainWindow::ReadData);
+        //QObject::connect(serialp,&QSerialPort::readyRead,this,&MainWindow::ReadData);
     }
     else
     {
@@ -312,3 +315,30 @@ void MainWindow::ReadData()
 }
 
 
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    static int keyflag=0;
+    if(keyflag==0)
+    {
+        mytime->start(50);
+        ui->pushButton_5->setText(tr("Time:end"));
+        keyflag=1;
+    }
+    else
+    {
+        mytime->stop();
+        ui->pushButton_5->setText(tr("Time:start"));
+        keyflag=0;
+    }
+
+
+}
+void MainWindow::timeon()
+{
+    static float timedis=0;
+    mytime->stop();
+    timedis+=0.05;
+    ui->lineEdit_5->setText(QString::number(timedis));
+    mytime->start(50);
+}
