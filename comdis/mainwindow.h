@@ -32,6 +32,8 @@ private slots:
     void on_pushButton_5_clicked();
     void timeon();
 
+    void on_pushButton_6_clicked();
+
 private:
     QGraphicsScene *scene;
     QTimer *mytime;
