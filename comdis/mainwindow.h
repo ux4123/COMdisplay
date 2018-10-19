@@ -34,6 +34,8 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_dial_valueChanged(int value);
+
 private:
     QGraphicsScene *scene;
     QTimer *mytime;

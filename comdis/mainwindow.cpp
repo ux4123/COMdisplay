@@ -16,13 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QObject::connect(serialp,&QSerialPort::readyRead,this,&MainWindow::ReadData);
     QObject::connect(mytime,&QTimer::timeout,this,&MainWindow::timeon);
-    scene->setSceneRect(0, 0, 600, 400);
+    scene->setSceneRect(0, 0, 600, 500);
 //        scene->addLine(0, 0, 30, 30);
 //        scene->addLine(40, 40, 70, 70);
     //wai kuang
-    scene->addRect(0,0,600,400);
+    scene->addRect(0,0,600,500);
     //zhong xian
-    scene->addLine(0,200,600,200);
+    scene->addLine(0,250,600,250);
 
     ui->graphicsView->setScene(scene);// important!!!
 }
@@ -234,7 +234,7 @@ void MainWindow::ReadData()
               //  qDebug()<<"zhengshu";
               //  qDebug()<<recData;
                 stateRec=0;
-                int nowData=200-(int)(recData/10.0);
+                int nowData=250-(int)(recData/10.0);
                 if(dataCount==0)
                 {
                     lastData=nowData;
@@ -245,6 +245,7 @@ void MainWindow::ReadData()
                 //    qDebug()<<"huitu************************************";
                     scene->addLine(9+dataCount,lastData,10+dataCount,nowData);
                     ui->graphicsView->setScene(scene);
+                    lastData=nowData;
                 }
 
                 dataCount++;
@@ -252,9 +253,9 @@ void MainWindow::ReadData()
                 {
                     dataCount=0;
                     scene->clear();
-                    scene->addRect(0,0,600,400);
+                    scene->addRect(0,0,600,500);
                     //zhong xian
-                    scene->addLine(0,200,600,200);
+                    scene->addLine(0,250,600,250);
                     ui->graphicsView->setScene(scene);
                 }
                 break;
@@ -285,10 +286,11 @@ void MainWindow::ReadData()
                 }
                 else
                 {
-                    if(nowData>399) nowData=lastData;
+                    if(nowData>499) nowData=lastData;
                //     qDebug()<<"huitu************************************";
                     scene->addLine(9+dataCount,lastData,10+dataCount,nowData);
                     ui->graphicsView->setScene(scene);
+                    lastData=nowData;
                 }
 
                 dataCount++;
@@ -296,9 +298,9 @@ void MainWindow::ReadData()
                 {
                     dataCount=0;
                     scene->clear();
-                    scene->addRect(0,0,600,400);
+                    scene->addRect(0,0,600,500);
                     //zhong xian
-                    scene->addLine(0,200,600,200);
+                    scene->addLine(0,250,600,250);
                     ui->graphicsView->setScene(scene);
                 }
                 break;
@@ -361,5 +363,15 @@ void MainWindow::on_pushButton_6_clicked()
             break;
     }
     default:break;
+    }
+}
+
+void MainWindow::on_dial_valueChanged(int value)
+{
+    if(serialp->isOpen())
+    {
+        char temp[1]={0x00};
+        temp[0]=(char)value/2;
+        serialp->write(temp,1);
     }
 }
