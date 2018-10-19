@@ -234,7 +234,7 @@ void MainWindow::ReadData()
               //  qDebug()<<"zhengshu";
               //  qDebug()<<recData;
                 stateRec=0;
-                int nowData=250-(int)(recData/10.0);
+                int nowData=250-(int)(recData/20.0);
                 if(dataCount==0)
                 {
                     lastData=nowData;
@@ -279,7 +279,7 @@ void MainWindow::ReadData()
              //   qDebug()<<"fushu";
              //   qDebug()<<recData;
                 stateRec=0;
-                int nowData=200+(int)(recData/10.0);
+                int nowData=250+(int)(recData/20.0);
                 if(dataCount==0)
                 {
                     lastData=nowData;
@@ -317,7 +317,7 @@ void MainWindow::ReadData()
 }
 
 
-
+// timer
 void MainWindow::on_pushButton_5_clicked()
 {
     static int keyflag=0;
@@ -345,10 +345,11 @@ void MainWindow::timeon()
     mytime->start(50);
 }
 
+//camera button
 void MainWindow::on_pushButton_6_clicked()
 {
     static int cameraState=0;
-    char temp[1]={0x00};
+    char temp[1]={0x3f};
     serialp->write(temp,1);
     switch(cameraState)
     {
@@ -374,4 +375,23 @@ void MainWindow::on_dial_valueChanged(int value)
         temp[0]=(char)value/2;
         serialp->write(temp,1);
     }
+}
+
+void MainWindow::on_dial_sliderPressed()
+{
+ //   dialFlag=0;
+    if(serialp->isOpen())
+    {
+ //       while(dialFlag!=1)
+        {
+            char temp[1]={0x00};
+            temp[0]=char(ui->dial->value());
+            serialp->write(temp,1);
+        }
+    }
+}
+
+void MainWindow::on_dial_sliderReleased()
+{
+//    dialFlag=1;
 }

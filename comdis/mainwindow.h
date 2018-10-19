@@ -36,10 +36,14 @@ private slots:
 
     void on_dial_valueChanged(int value);
 
+    void on_dial_sliderPressed();
+
+    void on_dial_sliderReleased();
+
 private:
     QGraphicsScene *scene;
     QTimer *mytime;
-
+//    int dialFlag=0;
 private:
     Ui::MainWindow *ui;
     QSerialPort *serialp;
