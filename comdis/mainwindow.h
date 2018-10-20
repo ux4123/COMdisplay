@@ -31,7 +31,7 @@ private slots:
     void ReadData();
     void on_pushButton_5_clicked();
     void timeon();
-
+    void sendtime();
     void on_pushButton_6_clicked();
 
     void on_dial_valueChanged(int value);
@@ -43,6 +43,7 @@ private slots:
 private:
     QGraphicsScene *scene;
     QTimer *mytime;
+    QTimer *sendtimer;
 //    int dialFlag=0;
 private:
     Ui::MainWindow *ui;

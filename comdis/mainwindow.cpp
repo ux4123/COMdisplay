@@ -13,9 +13,12 @@ MainWindow::MainWindow(QWidget *parent) :
     serialp=new QSerialPort;
     scene = new QGraphicsScene;
     mytime=new QTimer();
+    sendtimer=new QTimer();
 
     QObject::connect(serialp,&QSerialPort::readyRead,this,&MainWindow::ReadData);
     QObject::connect(mytime,&QTimer::timeout,this,&MainWindow::timeon);
+    QObject::connect(sendtimer,&QTimer::timeout,this,&MainWindow::sendtime);
+
     scene->setSceneRect(0, 0, 600, 500);
 //        scene->addLine(0, 0, 30, 30);
 //        scene->addLine(40, 40, 70, 70);
@@ -380,18 +383,26 @@ void MainWindow::on_dial_valueChanged(int value)
 void MainWindow::on_dial_sliderPressed()
 {
  //   dialFlag=0;
-    if(serialp->isOpen())
-    {
- //       while(dialFlag!=1)
-        {
-            char temp[1]={0x00};
-            temp[0]=char(ui->dial->value());
-            serialp->write(temp,1);
-        }
-    }
+//    if(serialp->isOpen())
+//    {
+// //       while(dialFlag!=1)
+//        {
+//            char temp[1]={0x00};
+//            temp[0]=char(ui->dial->value());
+//            serialp->write(temp,1);
+//        }
+//    }
+    sendtimer->start(50);
 }
 
 void MainWindow::on_dial_sliderReleased()
 {
 //    dialFlag=1;
+    sendtimer->stop();
+}
+void MainWindow::sendtime()
+{
+    char temp[1]={0x00};
+    temp[0]=(char)(ui->dial->value())/2;
+    serialp->write(temp,1);
 }

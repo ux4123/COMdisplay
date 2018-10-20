@@ -7,6 +7,8 @@
 QT       += core gui
 QT       += serialport
 QT       += core
+#RC_ICONS += icon.ico
+RC_FILE  +=logo.rc
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = comdis
