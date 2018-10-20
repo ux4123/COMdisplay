@@ -399,6 +399,8 @@ void MainWindow::on_dial_sliderReleased()
 {
 //    dialFlag=1;
     sendtimer->stop();
+    char temp[1]={0x3e};
+    serialp->write(temp,1);
 }
 void MainWindow::sendtime()
 {
