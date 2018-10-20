@@ -392,7 +392,10 @@ void MainWindow::on_dial_sliderPressed()
 //            serialp->write(temp,1);
 //        }
 //    }
-    sendtimer->start(50);
+    if(sendtimer->isActive()==false)
+    {
+        sendtimer->start(50);
+    }
 }
 
 void MainWindow::on_dial_sliderReleased()
