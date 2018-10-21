@@ -188,7 +188,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>camera</string>
+     <string>camera:off</string>
     </property>
    </widget>
    <widget class="QDial" name="dial">

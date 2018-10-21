@@ -351,23 +351,35 @@ void MainWindow::timeon()
 //camera button
 void MainWindow::on_pushButton_6_clicked()
 {
-    static int cameraState=0;
-    char temp[1]={0x3f};
-    serialp->write(temp,1);
-    switch(cameraState)
-    {
-    case 0:{
-           ui->pushButton_6->setText(tr("camera:on"));
-           cameraState=1;
-           break;
-    }
-    case 1:{
-            ui->pushButton_6->setText(tr("camera:off"));
-            cameraState=0;
-            break;
-    }
-    default:break;
-    }
+      if(ui->pushButton_6->text()=="camera:off")
+      {
+          char temp[1]={0x3f};
+          serialp->write(temp,1);
+          ui->pushButton_6->setText(tr("camera:on"));
+      }
+      else
+      {
+          char temp[1]={0x3d};
+          serialp->write(temp,1);
+          ui->pushButton_6->setText(tr("camera:off"));
+      }
+//    static int cameraState=0;
+//    char temp[1]={0x3f};
+//    serialp->write(temp,1);
+//    switch(cameraState)
+//    {
+//    case 0:{
+//           ui->pushButton_6->setText(tr("camera:on"));
+//           cameraState=1;
+//           break;
+//    }
+//    case 1:{
+//            ui->pushButton_6->setText(tr("camera:off"));
+//            cameraState=0;
+//            break;
+//    }
+//    default:break;
+//    }
 }
 
 void MainWindow::on_dial_valueChanged(int value)
