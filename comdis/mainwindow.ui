@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>810</width>
+    <width>911</width>
     <height>562</height>
    </rect>
   </property>
@@ -17,8 +17,8 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>350</y>
+      <x>690</x>
+      <y>360</y>
       <width>91</width>
       <height>131</height>
      </rect>
@@ -57,8 +57,8 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>230</y>
+      <x>690</x>
+      <y>250</y>
       <width>91</width>
       <height>100</height>
      </rect>
@@ -112,8 +112,8 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>190</y>
+      <x>690</x>
+      <y>220</y>
       <width>91</width>
       <height>22</height>
      </rect>
@@ -132,8 +132,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>140</y>
+      <x>690</x>
+      <y>100</y>
       <width>91</width>
       <height>51</height>
      </rect>
@@ -155,34 +155,11 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>100</y>
-      <width>91</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_5">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>480</y>
-      <width>89</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Time:start</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
-      <x>700</x>
-      <y>510</y>
+      <x>690</x>
+      <y>500</y>
       <width>89</width>
       <height>23</height>
      </rect>
@@ -194,11 +171,88 @@
    <widget class="QDial" name="dial">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>680</x>
       <y>0</y>
       <width>111</width>
       <height>101</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>150</y>
+      <width>91</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLineEdit" name="lineEdit_5"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="text">
+        <string>Time:start</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>410</y>
+      <width>101</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>1st</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>2nd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>3rd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="comboBox_4"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBox_2"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBox_3"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>500</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>send control</string>
     </property>
    </widget>
   </widget>

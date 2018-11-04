@@ -14,10 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
     scene = new QGraphicsScene;
     mytime=new QTimer();
     sendtimer=new QTimer();
+    controlTimer = new QTimer();
 
     QObject::connect(serialp,&QSerialPort::readyRead,this,&MainWindow::ReadData);
     QObject::connect(mytime,&QTimer::timeout,this,&MainWindow::timeon);
     QObject::connect(sendtimer,&QTimer::timeout,this,&MainWindow::sendtime);
+    QObject::connect(controlTimer,&QTimer::timeout,this,&MainWindow::buttonTime);
 
     scene->setSceneRect(0, 0, 600, 500);
 //        scene->addLine(0, 0, 30, 30);
@@ -28,6 +30,22 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addLine(0,250,600,250);
 
     ui->graphicsView->setScene(scene);// important!!!
+//**********************************************
+    ui->comboBox_2->addItem(tr("none"));
+    ui->comboBox_2->addItem(tr("left"));
+    ui->comboBox_2->addItem(tr("right"));
+    ui->comboBox_2->addItem(tr("head"));
+
+    ui->comboBox_3->addItem(tr("none"));
+    ui->comboBox_3->addItem(tr("left"));
+    ui->comboBox_3->addItem(tr("right"));
+    ui->comboBox_3->addItem(tr("head"));
+
+    ui->comboBox_4->addItem(tr("none"));
+    ui->comboBox_4->addItem(tr("left"));
+    ui->comboBox_4->addItem(tr("right"));
+    ui->comboBox_4->addItem(tr("head"));
+//**********************************************
 }
 
 MainWindow::~MainWindow()
@@ -422,4 +440,68 @@ void MainWindow::sendtime()
     char temp[1]={0x00};
     temp[0]=(char)(ui->dial->value())/2;
     serialp->write(temp,1);
+}
+void MainWindow::buttonTime()
+{
+    int condata[3];
+    condata[0]=ui->comboBox_2->currentIndex();
+    condata[1]=ui->comboBox_3->currentIndex();
+    condata[2]=ui->comboBox_4->currentIndex();
+
+    char temp[1]={0x00};
+
+
+    for(int i=0;i<3;i++)
+    {
+        int rep=10;
+        while(rep>0)
+        {
+            switch(condata[i])
+            {
+                case 0:{
+                    qDebug()<<"0";
+                }break;
+                case 1:{
+                    qDebug()<<"1";
+                    temp[0]=10;
+                    serialp->write(temp,1);
+                }break;
+                case 2:{
+                    qDebug()<<"2";
+                    temp[0]=90;
+                    serialp->write(temp,1);
+                }break;
+                case 3:{
+                    qDebug()<<"3";
+                    temp[0]=50;
+                    serialp->write(temp,1);
+                }break;
+                default:break;
+            }
+            rep--;
+        }
+    }
+}
+void MainWindow::on_pushButton_7_clicked()
+{
+    if(serialp->isOpen())
+    {
+        char temp[1]={0x00};
+        if(controlTimer->isActive()==false)
+        {
+            controlTimer->start(50);
+            ui->pushButton_7->setText(tr("send on"));
+        }
+        else
+        {
+           controlTimer->stop();
+           ui->pushButton_7->setText(tr("send off"));
+           temp[0]=0x3e;
+           serialp->write(temp,1);
+        }
+//        qDebug()<<ui->comboBox_2->currentIndex();
+//        char temp[1]={0x00};
+//        temp[0]=(char)
+//        serialp->write(temp,1);
+    }
 }
