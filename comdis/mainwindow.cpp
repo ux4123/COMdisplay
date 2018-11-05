@@ -453,8 +453,6 @@ void MainWindow::buttonTime()
 
     for(int i=0;i<3;i++)
     {
-        int rep=10;
-        while(rep>0)
         {
             switch(condata[i])
             {
@@ -463,22 +461,21 @@ void MainWindow::buttonTime()
                 }break;
                 case 1:{
                     qDebug()<<"1";
-                    temp[0]=10;
+                    temp[0]=0x09;
                     serialp->write(temp,1);
                 }break;
                 case 2:{
                     qDebug()<<"2";
-                    temp[0]=90;
+                    temp[0]=0x22;
                     serialp->write(temp,1);
                 }break;
                 case 3:{
                     qDebug()<<"3";
-                    temp[0]=50;
+                    temp[0]=0x15;
                     serialp->write(temp,1);
                 }break;
                 default:break;
             }
-            rep--;
         }
     }
 }
@@ -489,7 +486,7 @@ void MainWindow::on_pushButton_7_clicked()
         char temp[1]={0x00};
         if(controlTimer->isActive()==false)
         {
-            controlTimer->start(50);
+            controlTimer->start(500);
             ui->pushButton_7->setText(tr("send on"));
         }
         else
@@ -497,7 +494,10 @@ void MainWindow::on_pushButton_7_clicked()
            controlTimer->stop();
            ui->pushButton_7->setText(tr("send off"));
            temp[0]=0x3e;
-           serialp->write(temp,1);
+           for(int i=0;i<5;i++)
+           {
+                serialp->write(temp,1);
+           }
         }
 //        qDebug()<<ui->comboBox_2->currentIndex();
 //        char temp[1]={0x00};
