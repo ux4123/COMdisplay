@@ -14,10 +14,12 @@ MainWindow::MainWindow(QWidget *parent) :
     scene = new QGraphicsScene;
     mytime=new QTimer();
     sendtimer=new QTimer();
+    controlTimer = new QTimer();
 
     QObject::connect(serialp,&QSerialPort::readyRead,this,&MainWindow::ReadData);
     QObject::connect(mytime,&QTimer::timeout,this,&MainWindow::timeon);
     QObject::connect(sendtimer,&QTimer::timeout,this,&MainWindow::sendtime);
+    QObject::connect(controlTimer,&QTimer::timeout,this,&MainWindow::buttonTime);
 
     scene->setSceneRect(0, 0, 600, 500);
 //        scene->addLine(0, 0, 30, 30);
@@ -28,6 +30,22 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addLine(0,250,600,250);
 
     ui->graphicsView->setScene(scene);// important!!!
+//**********************************************
+    ui->comboBox_2->addItem(tr("none"));
+    ui->comboBox_2->addItem(tr("left"));
+    ui->comboBox_2->addItem(tr("right"));
+    ui->comboBox_2->addItem(tr("head"));
+
+    ui->comboBox_3->addItem(tr("none"));
+    ui->comboBox_3->addItem(tr("left"));
+    ui->comboBox_3->addItem(tr("right"));
+    ui->comboBox_3->addItem(tr("head"));
+
+    ui->comboBox_4->addItem(tr("none"));
+    ui->comboBox_4->addItem(tr("left"));
+    ui->comboBox_4->addItem(tr("right"));
+    ui->comboBox_4->addItem(tr("head"));
+//**********************************************
 }
 
 MainWindow::~MainWindow()
@@ -426,6 +444,9 @@ void MainWindow::sendtime()
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 1f3c05f... 0530
 void MainWindow::buttonTime()
 {
     int condata[3];
@@ -490,9 +511,12 @@ void MainWindow::on_pushButton_7_clicked()
 //        serialp->write(temp,1);
     }
 }
+<<<<<<< HEAD
 =======
 >>>>>>> parent of f1b0158... 2018/11/04 22:13
 =======
 >>>>>>> parent of f1b0158... 2018/11/04 22:13
 =======
 >>>>>>> parent of f1b0158... 2018/11/04 22:13
+=======
+>>>>>>> parent of 1f3c05f... 0530
