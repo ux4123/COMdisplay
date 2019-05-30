@@ -424,6 +424,7 @@ void MainWindow::sendtime()
     serialp->write(temp,1);
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 void MainWindow::buttonTime()
 {
     int condata[3];
@@ -488,5 +489,7 @@ void MainWindow::on_pushButton_7_clicked()
 //        serialp->write(temp,1);
     }
 }
+=======
+>>>>>>> parent of f1b0158... 2018/11/04 22:13
 =======
 >>>>>>> parent of f1b0158... 2018/11/04 22:13
